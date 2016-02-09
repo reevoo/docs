@@ -26,6 +26,6 @@ In the first few weeks we will organise a set of meetings with team members to g
 
 [**Follow this guide.**](https://reevoo.atlassian.net/wiki/display/PLAT/New+Developer+Setup) It tells you everything you need to know about getting your system set up and running, and gives you a whistlestop tour of our products. Make sure to ask for help if you get stuck.
 
-**Get pairing with people!** If everybody's in a pair, join one of them and make it a trio. Nobody should mind you watching them code. They will be happy to explain what they're doing. In true Agile style, a lot of information is not in documentation, so you'll have to talk to people in order to get up to speed.
+**Get [pairing](https://reevoo.atlassian.net/wiki/display/PLAT/Pairing) with people!** If everybody's in a pair, join one of them and make it a trio. Nobody should mind you watching them code. They will be happy to explain what they're doing. In true Agile style, a lot of information is not in documentation, so you'll have to talk to people in order to get up to speed.
 
 **Read code.** Once you've got access to Github, go and read the code for some of our products. It may be difficult to understand at first, so get someone to help you if you need it.
