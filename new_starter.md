@@ -29,3 +29,5 @@ In the first few weeks we will organise a set of meetings with team members to g
 **Get [pairing](https://reevoo.atlassian.net/wiki/display/PLAT/Pairing) with people!** If everybody's in a pair, join one of them and make it a trio. Nobody should mind you watching them code. They will be happy to explain what they're doing. In true Agile style, a lot of information is not in documentation, so you'll have to talk to people in order to get up to speed.
 
 **Read code.** Once you've got access to Github, go and read the code for some of our products. It may be difficult to understand at first, so get someone to help you if you need it.
+
+[**Read the wiki.**](https://reevoo.atlassian.net/wiki/display/PLAT/Engineering) There's loads of good information there. Maybe start with the [development process](https://reevoo.atlassian.net/wiki/display/PLAT/From+Code+to+Live%3A+The+Development+Process)?
