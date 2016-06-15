@@ -32,7 +32,9 @@ Good pull requests are:
 - How is the code tested? What are the edge cases - are they tested? How does the code behave when something goes wrong?
 - How is the new feature documented?
 - Can we write less code and do the same thing?
-- If you think the code is fine, but you are unsure of the context, use "LGTMBWTFDIK" (Looks Good to Me, but What Do I Know).
+- Are the commits sensible and do they have good messages? See [our guidelines on git commits](https://github.com/reevoo/docs/git_commits.md) for more guidance here.
+- If you think the code is fine, but you are unsure of the context, use "LGTMBWTFDIK" (Looks Good to Me, but What Do I Know). A pull request with just this on it is not ready for merge.
+- If you think the code is fine, and is ready for merge, put a "LGTM" comment on it
 
 ##### Merging a Pull Request
 - The owner should merge the Pull Request; they know whether the Pull Request is ready to merge or not.
