@@ -9,7 +9,6 @@ exemplify this approach are [Client Portal](http://github.com/reevoo/client_port
 
 We strive towards a service-oriented, event-driven architecture. This guide intends to pave the road and help readers make good architecture and design decisions when building services.
 
-
 - [What's a service?](#whats-a-service)
 - [Principles / philosophy](#principles--philosophy)
 - [Preferred technology stack](#preferred-technology-stack)
@@ -25,7 +24,6 @@ We strive towards a service-oriented, event-driven architecture. This guide inte
 ----------------------
 
 ### What's a service?
-
 
 A service is a software entity that can be defined as a function of what third
 parties it interacts with, which domain concepts it operates on, and how it
@@ -56,7 +54,7 @@ A service may, in fact, be large in terms of lines of code but it should always 
 
 The overarching principles in service design are:
 
-- **Cohesion**: a service is sole responsible for clearly defined functions on
+- **Cohesion**: a service is solely responsible for clearly defined functions on
   the domain, and for clearly defined sets of entities in the domain (a.k.a
   compactness, autonomy).
 - **Abstraction**: a service's implementation details are entirely hidden behind its
@@ -88,8 +86,7 @@ build good services. As a summary:
 
 #### REST over HTTP
 
-Services must only ever communicate with the rest of the world (other services
-or end users) over an HTTP interface, respecting REST principles.
+When communicating synchronously with the rest of the world (other services or end users), services must only ever communicate over an HTTP interface, respecting REST principles.
 
 In particular (but not limited to):
 
@@ -103,7 +100,7 @@ In particular (but not limited to):
 
 When services need to coordinate or synchronise state information about domain
 entities (normally flowing out of the service that has authority on that part
-of the domain), this should be achieved in an event-driven manner.
+of the domain), this should be achieved asynchronously in an event-driven manner.
 
 An event can simply be defined as:
 
@@ -126,7 +123,7 @@ Consumer services know about source services through configuration (i.e. through
 
 ##### Further reading
 
-- [Async messaging](https://github.com/reevoo/guidelines/blob/master/async_messaging.md) document.
+- [Async messaging](https://github.com/reevoo/docs/blob/master/async_messaging.md) document.
 
 ------------------------
 
@@ -181,14 +178,14 @@ A service needs to support multiple "tenants" by configuring itself (through its
   (typically concepts/resources).
 
 - Sharing a database layer. If two "services" communicate through Mongo,
-  RabbitMQ, etc, they're actually one single service. They must communicate over
-  HTTP, and there are no exceptions.
+  Postgres, etc, they're actually one single service. They must communicate over
+  HTTP or through a message queue, and there are no exceptions.
 
 
 #### Further reading
 
 API design has its specific set of guidelines, outlined in the [Designing
-APIs](https://github.com/reevoo/guidelines/blob/master/api.md) document.
+APIs](https://github.com/reevoo/docs/blob/master/api.md) document.
 
 ----------------------
 
@@ -202,16 +199,18 @@ From top to bottom of the production stack:
 | Concern                 | Technology                          |
 |-------------------------|-------------------------------------|
 | Styling                 | Sass + Material Design              |
-| Front-end logic         | JavaScript + Angular.js             |
-| Serving HTTP            | Unicorn                             |
+| Front-end logic         | JavaScript + React                  |
+| Serving HTTP            | Puma                                |
 | Responding to requests  | Grape                               |
 | Querying HTTP           | Faraday                             |
 | Logic                   | Ruby                                |
+| Search                  | Elasticsearch                       |
+| Message queueing        | Rabbitmq                            |
 | Persisting data         | Sequel/PostgreSQL                   |
 | Caching data            | Redis                               |
 | Background processing   | Resque                              |
 | Hosting                 | Amazon EC2                          |
-| Logging                 | Papertrail                          |
+| Logging                 | Logstash                            |
 
 **NOTE:** You should aim to use the latest, stable versions of the above.
 
@@ -220,14 +219,12 @@ In development:
 | Concern                 | Technology                          |
 |-------------------------|-------------------------------------|
 | Unit/integration testing| RSpec                               |
-| Javascrip testing       | Jasmine + Protractor                |
+| Javascript testing      | Jasmine + Intern                    |
 | Acceptance testing      | RSpec + Capybara + PhantomJS        |
 
 Alternatives should only be considered when there's a legitimate reason to
 (which does not, ever, include "I want to play with it"). Using an alternative
 should convince a majority amongst the team's technical leadership.
-
-
 
 #### Introducing new technologies
 
@@ -299,7 +296,7 @@ In the case of an error, services should:
 
   - log the fact there _was_ an exception/failure at `WARN` level.
   - log the stack trace at `DEBUG` level
-  - send the exception to HoneyBadger
+  - send the exception to Sentry
 
 In addition, services:
 
@@ -311,8 +308,7 @@ In addition, services:
 - Log level **MUST** be INFO in deployed apps.
 - You **SHOULD** log to `$stdout` (per [12factor principles](http://12factor.net/logs)). In Rails this can be done with `config.logger = ::Logger.new(STDOUT)`
 - You **SHOULD** log no more than 1-2 lines per user request or job.
-
-Heroku captures logs by default but it is **REQUIRED** that you add [PaperTrail](https://papertrailapp.com) to make it easier to review and parse the logs. You also need to use [syslog drains](https://devcenter.heroku.com/articles/logging#syslog-drains) on Heroku to capture and store your logs, via Papertrail to [consolidate logging](http://help.papertrailapp.com/kb/hosting-services/heroku/#addon) under the HouseTrip account.
+- **MUST** log to a format which can be picked up by logstash. These should complement Rails/Grape logs, not replace them
 
 --------
 
@@ -323,6 +319,8 @@ To monitor the _performance_ of your application, use [New Relic](http://newreli
 To monitor the _availability_ of your application, use [Pingdom](https://www.pingdom.com).
 
 To monitor the _functionality_ of your application, i.e. job queues, event streams, cache hits etc. etc. then use [Datadog](http://www.datadoghq.com)
+
+Note, we also use [sysdig](https://sysdig.com/) to monitor server level behaviour, and [Sensu](https://sensuapp.org/) on legacy servers
 
 ---------
 
@@ -380,7 +378,7 @@ The following series of steps is the (strongly) recommended way to perform the
 extraction.
 
 1. Define the domain concepts, and who has authority on them (here, the
-   monolithic application would retain authority on properties, availaiblity,
+   monolithic application would retain authority on properties, availability,
    and pricing).
 2. Define the API of the service (as a RESTful HTTP API).
 3. Define a client interface, with a Ruby API that closely matches the service's API (this can be done
@@ -402,8 +400,6 @@ while working on the facade.
 
 Step 7 (service client) can likewise be started earlier, although prudence is
 advised for similar reasons.
-
-
 
 ### Further reading
 
