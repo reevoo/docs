@@ -4,10 +4,17 @@ How we do remote work in Reevoo.
 
 ## Software
 
+- [Zoom](https://zoom.us/) for tele/videoconferencing.
+- [Slack](https://slack.com/) for group and private chat
 - [Skype](http://www.skype.com) for tele/videoconferencing.
-- [HipChat](http://www.hipchat.com) for group and private chat
 - [Floobits](http://www.floobits.com) for remote pairing
 
+## Zoom
+
+Zoom is Reevoo's proffered videoconferencing software. Everyone should have a zoom account either Pro or Basic, Basic accounts are limited to hosting 30 minute meetings.
+The instructions for downloading and setting up Zoom with the Reevoo account are [here](https://reevoo.atlassian.net/wiki/display/PROC/Zoom+Rooms+Instructions).
+Everyone should have the client installed and know their username and password to save faffing around at the start of meetings.
+When there is a meeting, just log onto the zoom client and wait for an invite from whoever is hosting.
 
 ### Floobits
 
@@ -58,8 +65,8 @@ So any commands in the terminal (running server, test...) should be run by user 
 
 ### Calling
 
-- Use external microphone when calling by Skype or Hangouts whenever there are more than two people on the call.
-- Check in the Skype/Hangouts settings whether the connected microphone is actually used.
+- Use external microphone when calling by Zoom whenever there are more than two people on the call.
+- Check in the Zoom settings whether the connected microphone is actually used.
 - Just one person should speek at the same time.
 - Distance between the microphone and person speaking shouldn't be more that 2 meters. If it's possible place the mic
 in the middle of meeting place.
