@@ -26,6 +26,12 @@ Imagine yourself coming to this document 6 months down the line. Is it small eno
 
 - [ ] The documentation is easy to maintain.
 
+## Where should it live?
+
+All documentation for reevoo engeneering belongs here in this repo. Unless it contains sensitive information about internal processes or infrastructure, in which case it should live in the engineering section of the company Wiki. Our documentation should be of interest to people outside of the company, if you consider that not to be the case for a particuar peice of documentation then it may belong on the Wiki, or in the bin.
+
+- [ ] I have decided where the documentation should live.
+
 ## After You Finish
 
 Now you're done being an author, **pretend to be the reviewer.** When you self-review, you catch the errors likely to be picked up by your actual reviewer.
@@ -35,6 +41,7 @@ Now you're done being an author, **pretend to be the reviewer.** When you self-r
 Once your documentation is out in the world, **you need existing documentation to link to it so it can be seen.** There are many [orphaned pages](https://www.searchenginejournal.com/seo-terminology-orphan-and-dead-end-pages/7373/) on the Internet, and they don't get much attention; if your documentation has no links to it, it won't get read.
 
 - [ ] I have linked the document permanently to other documentation.
+
 
 ## Further Information
 
