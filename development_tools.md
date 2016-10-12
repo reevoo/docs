@@ -22,3 +22,5 @@ projects.
 
 ### Testing
 * [rspec](http://rspec.info/) - BDD for ruby
+* [simplecov](https://github.com/colszowka/simplecov) - Code Coverage
+  * [simplecov-console](https://github.com/chetan/simplecov-console) - Console output for simplecov
