@@ -37,4 +37,16 @@ brew cask install minikube
 
 To get the correct config for our legacy cluster (used for all projects at this time) contact devops.
 
-For access to the newer cluster(s) you will be issued with a token by the devops team.
+For access to the newer cluster(s) you will be issued with a token and the name of a cluster.
+
+Here is an example of setting up access to a fictional cluster called `jelly-bowl`.
+
+```bash
+K8S_CLUSTER_NAME=jelly-bowl
+K8S_TOKEN=thisismytokenthisismyperfecttoken
+
+kubectl config set-cluster ${K8S_CLUSTER_NAME} --server=https://${K8S_CLUSTER_NAME}.kubernetes.reevoocloud.com
+kubectl config set-credentials $(whoami) --token=${K8S_TOKEN}
+kubectl config set-context ${K8S_CLUSTER_NAME} --cluster=${K8S_CLUSTER_NAME} --user=$(whoami)
+kubectl config use-context ${K8S_CLUSTER_NAME}
+```
