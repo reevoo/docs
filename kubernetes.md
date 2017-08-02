@@ -22,7 +22,7 @@ While not yet in use we will shortly be using Helm to deploy our applications to
 ### `minikube` (Optional)
 
 Minikube allows you to run a local Kubernetes cluster, for learning about Kubernetes or running your development environment.
-Hombrew does not have a package for minikube as it is distrabuted as a binary, However it can be installed with [Homebrew Cask](https://caskroom.github.io/)
+Hombrew does not have a package for minikube as it is distributed as a binary, However it can be installed with [Homebrew Cask](https://caskroom.github.io/)
 
 You can discover more about using minikube [here](https://github.com/kubernetes/minikube).
 
